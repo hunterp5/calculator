@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<style>
+
+body {
+  font-family: 'Roboto', 'Arial';
+}
+
+#calcResultsContainer {
+  grid-column: 1/5;
+  width: 400px;
+  height: 50px;
+  background-color: white;
+  justify-self: center;
+  justify-content: center;
+  align-content: center;
+  border-radius: 5px;
+}
+
+#calcContainer {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+}
+
+#calculator {
+  background-color: rgb(207, 207, 207);
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  width: 500px;
+  height: 500px;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  font-family: 'Roboto', 'Arial';
+  font-size: medium;
+}
+
+#equals {
+  grid-column: 1/5;
+  width: 400px;
+  justify-self: center;
+}
+
+</style>
+
+    <head>
+        <h1>WebPage</h1>
+        <meta charset = "UTF-8">
+    </head> 
+
+    <body>
+        <div id = "calcContainer">
+            <div id = "calculator">
+              <div id = "calcResultsContainer">
+                
+              </div>
+              <button class = 'button' id = 'seven'>7</button>
+              <button class = 'button' id = '8'>8</button>
+              <button class = 'button' id = '9'>9</button>
+              <button class = 'button' id = 'divide'>/</button> <!--Row one-->
+              <button class = 'button' id = '4'>4</button>
+              <button class = 'button' id = '5'>5</button>
+              <button class = 'button' id = '6'>6</button>
+              <button class = 'button' id = 'multiply'>X</button> <!--Row two-->
+              <button class = 'button' id = '1'>1</button>
+              <button class = 'button' id = '2'>2</button>
+              <button class = 'button' id = '3'>3</button>
+              <button class = 'button' id = 'subtract'>-</button> <!--Row three-->
+              <button class = 'button' id = '0'>0</button>
+              <button class = 'button' id = 'decimnal'>.</button>
+              <button class = 'button' id = 'clear'>Clear</button>
+              <button class = 'button' id = 'add'>+</button> <!--Row four-->
+              <button class = 'button' id = 'equals'>=</button>
+            </div>
+        <div>
+    </body>
+      
+
+    <script>
+        function performOperation (num1,num2) {
+          let userOperator = prompt("Choose an operation");
+          switch (userOperator) {
+            case userOperator = 'add':
+              result = num1 + num2;
+              break;
+            case userOperator = 'subtract':
+              result = num1 - num2;
+              break;
+            case userOperator = 'multiply':
+              result = num1 * num2;
+              break;
+            case userOperator = 'divide':
+              result = num1 / num2; 
+              break;
+            default:
+                console.log("Not a valid operator")
+                break;
+          }
+          return result;
+        }
+
+        
+          var buttons = document.querySelectorAll(".button");
+          var i = 0, length = buttons.length;
+          for (i; i < length; i++) {
+            buttons[i].addEventListener("click", storeValue()) 
+                // use keyword this to target clicked button
+            } 
+            
+        
+
+        function storeValue (a) {
+          console.log('ye');
+          a = a
+          var target = a.target
+          if (target.idName.match('seven'))
+    {
+        //an element with the keyword Class was clicked
+    }
+        }
+
+        function populate () {
+            let userChoice1 = prompt("number");
+            console.log("hey");
+            resultDisplay.appendChild(userChoice1);
+            return userChoice1;
+          }
+        
+        let resultDisplay = document.querySelector("#calcResultsContainer");
+        var calcResults = document.createElement("p")
+        
+        
+
+        
+       //performOperation(1,2);
+       //console.log(result);
+       
+    </script>
+</html>
