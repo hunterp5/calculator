@@ -62,19 +62,19 @@ button {
               <div id = "calcResultsContainer">
                 
               </div>
-              <button class = 'numButton' id = 'seven'>7</button>
-              <button class = 'numButton' id = 'eight'>8</button>
-              <button class = 'numButton' id = 'nine'>9</button>
+              <button class = 'numButton' id = 'seven' value = '7'>7</button>
+              <button class = 'numButton' id = 'eight' value = '8'>8</button>
+              <button class = 'numButton' id = 'nine' value = '9'>9</button>
               <button class = 'opButton' id = 'divide'>/</button> <!--Row one-->
-              <button class = 'numButton' id = 'four'>4</button>
-              <button class = 'numButton' id = 'five'>5</button>
-              <button class = 'numButton' id = 'six'>6</button>
+              <button class = 'numButton' id = 'four' value = '4'>4</button>
+              <button class = 'numButton' id = 'five' value = '5'>5</button>
+              <button class = 'numButton' id = 'six' value = '6'>6</button>
               <button class = 'opButton' id = 'multiply'>X</button> <!--Row two-->
-              <button class = 'numButton' id = 'one'>1</button>
-              <button class = 'numButton' id = 'two'>2</button>
-              <button class = 'numButton' id = 'three'>3</button>
+              <button class = 'numButton' id = 'one' value = '1'>1</button>
+              <button class = 'numButton' id = 'two' value = '2'>2</button>
+              <button class = 'numButton' id = 'three' value = '3'>3</button>
               <button class = 'opButton' id = 'subtract'>-</button> <!--Row three-->
-              <button class = 'numButton' id = 'zero'>0</button>
+              <button class = 'numButton' id = 'zero' value = '0'>0</button>
               <button class = 'button' id = 'decimnal'>.</button>
               <button class = 'button' id = 'clear'>Clear</button>
               <button class = 'opButton' id = 'add'>+</button> <!--Row four-->
@@ -130,6 +130,7 @@ button {
 
         var numButtons = document.querySelectorAll(".numButton");
         var i = 0, length = numButtons.length;
+        
         for (i; i < length; i++) {
             numButtons[i].addEventListener("click", function() {
             storeNumber1();
@@ -144,15 +145,14 @@ button {
         }); 
         } 
 
-        let num1 = '7';
+        
         function storeNumber1 () {
-          if (event.target.className.match('numButton')) {
+          // if (event.target.className.match('numButton')) {
             // thow a switch statement here with cases being the button ids.
             // return a value based on the button pushed, store into num1.
-            resultDisplay.textContent = num1;
-            console.log("7");
-            return num1;
-          }
+            resultDisplay.textContent = event.target.value;
+            console.log(event.target.value);
+         // }
         }
 
         function storeNumber2 () {
