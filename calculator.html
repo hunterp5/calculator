@@ -65,118 +65,128 @@ button {
               <button class = 'numButton' id = 'seven' value = '7'>7</button>
               <button class = 'numButton' id = 'eight' value = '8'>8</button>
               <button class = 'numButton' id = 'nine' value = '9'>9</button>
-              <button class = 'opButton' id = 'divide'>/</button> <!--Row one-->
+              <button class = 'opButton' id = 'divide' value = '/'>/</button> <!--Row one-->
               <button class = 'numButton' id = 'four' value = '4'>4</button>
               <button class = 'numButton' id = 'five' value = '5'>5</button>
               <button class = 'numButton' id = 'six' value = '6'>6</button>
-              <button class = 'opButton' id = 'multiply'>X</button> <!--Row two-->
+              <button class = 'opButton' id = 'multiply' value = '*'>X</button> <!--Row two-->
               <button class = 'numButton' id = 'one' value = '1'>1</button>
               <button class = 'numButton' id = 'two' value = '2'>2</button>
               <button class = 'numButton' id = 'three' value = '3'>3</button>
-              <button class = 'opButton' id = 'subtract'>-</button> <!--Row three-->
+              <button class = 'opButton' id = 'subtract' value = '-'>-</button> <!--Row three-->
               <button class = 'numButton' id = 'zero' value = '0'>0</button>
-              <button class = 'button' id = 'decimnal'>.</button>
+              <button class = 'button' id = 'decimal' value = '.'>.</button>
               <button class = 'button' id = 'clear'>Clear</button>
-              <button class = 'opButton' id = 'add'>+</button> <!--Row four-->
-              <button class = 'button' id = 'equals'>=</button>
+              <button class = 'opButton' id = 'add' value = '+'>+</button> <!--Row four-->
+              <button class = 'button' id = 'equals' value = '='>=</button>
             </div>
         <div>
     </body>
       
 
     <script>
-        function add (num1, num2) {
-          let sum = num1 + num2;
-          return sum;
-        }
-
-        function subtract (num1, num2) {
-          let difference = num1 - num2;
-          return difference;
-        }
-
-        function multiply (num1, num2) {
-          let product = num1 * num2;
-          return product;
-        }
-
-        function divide (num1, num2) {
-          let quotient = num1 / num2;
-          return quotient;
-        }
-
-        function performOperation (userOperator) {
-        switch (userOperator) {
-          case userOperator = 0:
-            console.log(add(num1, num2));
-            break;
-          case userOperator = 1:
-            console.log(subtract(num1, num2));
-            break;
-          case userOperator = 2:
-            console.log(multiply(num1, num2));
-            break;
-          case userOperator = 3:
-            console.log(divide(num1, num2));
-            break;
-          default:
-              console.log("Not a valid operation")
-              break;
-        }
-      }
-        
         let resultDisplay = document.querySelector("#calcResultsContainer");
         let calcResults = document.createElement("p.results");
+        const numButtons = document.querySelectorAll(".numButton");
+        const operatorButtons = document.querySelectorAll(".opButton");
+        const equalButton = document.querySelector("#equals");
+        const clearButton = document.querySelector("#clear");
 
-        var numButtons = document.querySelectorAll(".numButton");
+        resultDisplay.textContent = "";
+        let num1 = 0;
+        let num2 = 0; //Initializes values
+        let result = 0;
+        let userOperator = ""
+
         var i = 0, length = numButtons.length;
-        
         for (i; i < length; i++) {
             numButtons[i].addEventListener("click", function() {
-            storeNumber1();
+            storeNumber();
         }); 
-        } 
+        } //Stores numeric values
 
-        var operatorButtons = document.querySelectorAll(".opButton");
         var i = 0, length = operatorButtons.length;
         for (i; i < length; i++) {
             operatorButtons[i].addEventListener("click", function() {
             storeOperator();
         }); 
-        } 
+        } //Stores operator value
 
-        
-        function storeNumber1 () {
-          // if (event.target.className.match('numButton')) {
-            // thow a switch statement here with cases being the button ids.
-            // return a value based on the button pushed, store into num1.
-            resultDisplay.textContent = event.target.value;
-            console.log(event.target.value);
-         // }
-        }
+        equalButton.addEventListener("click", function() {
+          performOperation(num1, num2, userOperator);
+        }); //Equal button performs operations
 
-        function storeNumber2 () {
-          if (event.target.className.match('numButton')) {
-            // thow a switch statement here with cases being the button ids.
-            // return a value based on the button pushed, store into num1.
-            resultDisplay.textContent = num2;
-            console.log("7");
+        clearButton.addEventListener("click", function() {
+          resetDisplay();
+        }) //Resets the display and sets vars to 0 or ""
+
+        function storeNumber () {
+          if (resultDisplay.textContent == "" ) {
+            num1 = event.target.value;
+            resultDisplay.textContent = num1;
+            return num1;
+          } else {
+            num2 = event.target.value;
+            resultDisplay.textContent += num2;
             return num2;
           }
         }
 
         function storeOperator () {
           if (event.target.className.match('opButton')) {
-            let userOperator = "+";
-            resultDisplay.textContent = num1.concat(userOperator);
-            console.log("+");
-            return num1;
+            userOperator = event.target.value;
+            resultDisplay.textContent += userOperator;
+            return userOperator;
           }
         }
 
+        function add () {
+          result = Number(num1) + Number(num2);
+          return result;
+        }
 
-    
-        
-       
+        function subtract (num1, num2) {
+          result = Number(num1) - Number(num2);
+          return result;
+        }
+
+        function multiply (num1, num2) {
+          result = Number(num1) * Number(num2);
+          return result;
+        }
+
+        function divide (num1, num2) {
+          result = Number(num1) / Number(num2);
+          return result;
+        }
+
+        function performOperation () {
+        switch (userOperator) {
+          case userOperator = '+':
+            console.log(add(num1, num2));
+            break;
+          case userOperator = '-':
+            console.log(subtract(num1, num2));
+            break;
+          case userOperator = '*':
+            console.log(multiply(num1, num2));
+            break;
+          case userOperator = '/':
+            console.log(divide(num1, num2));
+            break;
+          default:
+              console.log("Not a valid operation")
+              break;
+        }
+        resultDisplay.textContent = result;
+      }
+
+        function resetDisplay () {
+        resultDisplay.textContent = "";
+        num1 = 0;
+        num2 = 0; 
+        result = 0;
+        userOperator = ""
+        }
     </script>
 </html>
